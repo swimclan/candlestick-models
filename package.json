@@ -1,0 +1,26 @@
+{
+  "name": "candlestick-models",
+  "version": "0.0.1",
+  "description": "A financial asset event-based candlestick chart modeler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/swimclan/candlestick-models.git"
+  },
+  "keywords": [
+    "candlestick",
+    "stock",
+    "chart",
+    "financial",
+    "analysis"
+  ],
+  "author": "Matthew Herron",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/swimclan/candlestick-models/issues"
+  },
+  "homepage": "https://github.com/swimclan/candlestick-models#readme"
+}
