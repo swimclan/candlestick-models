@@ -93,10 +93,12 @@ cbpPropMap.set('symbol', 'product_id');
 const cbpchart = Chart(cbp, '1m', {
   propMap: cbpPropMap,
   filterFn(quote) { return quote.type === 'match' },
-  listenerEventName: 'message'
+  listenerEventName: 'message',
+  errorEventName: 'error'
 });
 
 cbpchart.on('close', console.log);
+cbpchart.on('error', (error) => throw new Error(error));
 
 /*
 Candlestick {

@@ -25,6 +25,8 @@ function Chart(websocket, timeframe, config) {
   var filterFn = get(config, 'filterFn', null);
   var listenerMethodName = get(config, 'listenerMethodName', null);
   var listenerEventName = get(config, 'listenerEventName', null);
+  var errorMethodName = get(config, 'errorMethodName', null);
+  var errorEventName = get(config, 'errorEventName', null);
   var chart = new EventEmitter();
   var clock = IntervalClock(timeframe);
   var currentCandle;
@@ -40,6 +42,10 @@ function Chart(websocket, timeframe, config) {
       currentCandle = new Candlestick(returnMessage.price, returnMessage.symbol);
     }
     chart.emit('change', currentCandle);
+  }
+
+  function errorHandler(error) {
+    chart.emit('error', typeof error === 'object' ? error : { error: error })
   }
 
   function clockHandler() {
@@ -64,6 +70,12 @@ function Chart(websocket, timeframe, config) {
     websocket.on(listenerEventName, messageHandler);
   } else {
     throw new Error('FATAL: Must specify either a listenerMethodName or listenerEventName')
+  }
+
+  if (errorMethodName) {
+    websocket[errorMethodName].call(this, errorHandler);
+  } else if (errorEventName) {
+    websocket.on(errorEventName, errorHandler);
   }
 
   return chart;
