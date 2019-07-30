@@ -102,6 +102,7 @@ cbpchart.on('error', (error) => throw new Error(error));
 
 /*
 Candlestick {
+  timestamp: 'Mon Jul 29 2019 20:31:00 GMT-0500',
   symbol: 'BTC-USD',
   high: 7858,
   low: 7853.44,
@@ -111,6 +112,7 @@ Candlestick {
   close: 7858,
   volume: 1.2756039000000001 }
 Candlestick {
+  timestamp: 'Mon Jul 29 2019 20:32:00 GMT-0500',
   symbol: 'BTC-USD',
   high: 7858,
   low: 7854.24,
