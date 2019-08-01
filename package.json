@@ -1,6 +1,6 @@
 {
   "name": "candlestick-models",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A financial asset event-based candlestick chart modeler",
   "main": "index.js",
   "scripts": {

@@ -78,6 +78,17 @@ function Chart(websocket, timeframe, config) {
     websocket.on(errorEventName, errorHandler);
   }
 
+  chart.recycleWebsocket = function(newWebsocket) {
+    errorEventName && websocket.off(errorEventName, errorHandler);
+    listenerEventName && websocket.off(listenerEventName, messageHandler)
+    errorEventName && (websocket[errorMethodName] = null);
+    listenerMethodName && (websocket[listenerMethodName] = null);
+    websocket = newWebsocket;
+    errorEventName && websocket.on(errorEventName, errorHandler);
+    listenerEventName && websocket.on(listenerEventName, messageHandler)
+    errorEventName && (websocket[errorMethodName] = errorHandler);
+    listenerMethodName && (websocket[listenerMethodName] = messageHandler);
+  }
   return chart;
 
 }

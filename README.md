@@ -14,6 +14,7 @@ This package generates candlestick models at any interval down to 1 second.  The
 *   Simple factory function instantiation
 *   A price stream simulator that can be used to test adapter
 *   ES5 implementation means use in older versions of Node
+*   Websocket recycle utility to refresh supplied websocket with new websocket to prevent connection failures
 
 ### Code Demo
 
@@ -122,6 +123,15 @@ Candlestick {
   close: 7858,
   volume: 1.66471794 }
 */
+```
+
+#### Websocket recycling
+
+```js
+const { Chart } = require('candlestick-models');
+const exchangeChart = Chart({...config})
+const newWebsocket = new ExchangeWebsocket({...options});
+exchangeChart.recycleWebsocket(newWebsocket); // This will replace old websocket with fresh new websocket
 ```
 
 ### Download & Installation
