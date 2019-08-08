@@ -39,7 +39,8 @@ simPropMap.set('symbol', 'symbol');
 // listener event name or a listener method name
 const simchart = Chart(sim, '5s', {
   propMap: simPropMap,
-  filterFn(quote) { return quote.type === 'last' },
+  filterFn(message) { return message.type === 'last' },
+  messageFn(message) { console.log(message) } // Will be executed on every message from the socket
   listenerEventName: 'quote'
 });
 
@@ -93,7 +94,7 @@ cbpPropMap.set('symbol', 'product_id');
 // Instantiate chart with socket, interval and config object
 const cbpchart = Chart(cbp, '1m', {
   propMap: cbpPropMap,
-  filterFn(quote) { return quote.type === 'match' },
+  filterFn(message) { return message.type === 'match' },
   listenerEventName: 'message',
   errorEventName: 'error'
 });

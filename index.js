@@ -23,6 +23,7 @@ var TRADE_PROPS = require('./lib/constants').TRADE_PROPS;
 function Chart(websocket, timeframe, config) {
   var propMap = get(config, 'propMap', null);
   var filterFn = get(config, 'filterFn', null);
+  var messageFn = get(config, 'messageFn', null);
   var listenerMethodName = get(config, 'listenerMethodName', null);
   var listenerEventName = get(config, 'listenerEventName', null);
   var errorMethodName = get(config, 'errorMethodName', null);
@@ -32,6 +33,7 @@ function Chart(websocket, timeframe, config) {
   var currentCandle;
 
   function messageHandler(message) {
+    messageFn && messageFn(message);
     if (!filterFn(message)) {
       return;
     }
